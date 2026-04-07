@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Pascal — Gypserie & Peinture</title>
+    <meta name="description" content="Artisan peintre et gypseur à Saint-Maurice, Valais. Python Pascal : finitions de qualité, neuf et rénovation.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --white: #ffffff;
+            --light-gray: #f9f9f9;
+            --anthracite: #222222;
+            --gold: #C8A96E;
+            --spacing: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--anthracite);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        /* --- Mise en page globale --- */
+        section {
+            padding: var(--spacing) 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .bg-alt {
+            background-color: var(--light-gray);
+            max-width: 100%;
+        }
+
+        .container-alt {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: var(--anthracite);
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1589939705384-5185138a047a?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: white;
+            padding-top: 0;
+            max-width: 100%;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        #home p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background-color: var(--gold);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* --- About Section --- */
+        #about {
+            text-align: center;
+            max-width: 700px;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* --- Galerie Réalisations --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #eee;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- Avis Clients --- */
+        .reviews-container {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-left: 3px solid var(--gold);
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .review-card p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .review-card span {
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* --- Contact Section --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info a {
+            display: block;
+            color: var(--anthracite);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        .address {
+            margin-top: 20px;
+            font-style: normal;
+            color: #666;
+        }
+
+        .map-container {
+            height: 350px;
+            width: 100%;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+
+        /* --- Lightbox simple --- */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid white;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            #home h1 { font-size: 2.2rem; }
+            #home p { font-size: 1.1rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .header nav { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">PYTHON PASCAL</a>
+            <div style="display: flex; gap: 20px;">
+                <a href="#about" style="text-decoration:none; color:var(--anthracite); font-size: 0.9rem;">À propos</a>
+                <a href="#portfolio" style="text-decoration:none; color:var(--anthracite); font-size: 0.9rem;">Réalisations</a>
+                <a href="#contact" style="text-decoration:none; color:var(--anthracite); font-size: 0.9rem;">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Accueil (Hero) -->
+    <section id="home">
+        <h1>Python Pascal</h1>
+        <p>Gypserie & Peinture</p>
+        <a href="#contact" class="btn">Me contacter</a>
+    </section>
+
+    <!-- À propos -->
+    <section id="about">
+        <h2>À propos</h2>
+        <p>
+            Artisan indépendant basé à Saint-Maurice, j’interviens dans tout le Bas-Valais pour vos travaux de peinture et de gypserie. 
+            Fort d'une solide expérience locale, je mets un point d'honneur à réaliser des finitions soignées qui respectent vos envies et l'architecture de votre habitat. 
+            Un savoir-faire artisanal au service de la durabilité et de l'esthétique.
+        </p>
+    </section>
+
+    <!-- Réalisations -->
+    <div class="bg-alt">
+        <section id="portfolio">
+            <h2>Réalisations</h2>
+            <div class="gallery">
+                <!-- Remplacer les src par vos photos réelles -->
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1562663474-6cbb3fee1c77?q=80&w=800&auto=format&fit=crop" alt="Peinture intérieure">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1595844730298-b960ff98fee0?q=80&w=800&auto=format&fit=crop" alt="Travaux de gypserie">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=800&auto=format&fit=crop" alt="Finition murs">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1525909002-1b05e0c869d8?q=80&w=800&auto=format&fit=crop" alt="Peinture extérieure">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b354bc2d1854?q=80&w=800&auto=format&fit=crop" alt="Rénovation">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=800&auto=format&fit=crop" alt="Chantier propre">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Avis Clients -->
+    <section id="reviews">
+        <h2>Avis Clients</h2>
+        <div class="reviews-container">
+            <div class="review-cards">
+                <div class="review-card">
+                    <p>"Travail impeccable et délais respectés. Pascal est très professionnel et de bon conseil pour le choix des teintes."</p>
+                    <span>— Jean-Marc L.</span>
+                </div>
+                <div class="review-card">
+                    <p>"Un artisan de confiance comme on en fait peu. Chantier propre et résultat magnifique."</p>
+                    <span>— Sophie M.</span>
+                </div>
+            </div>
+            <a href="https://www.google.com/search?q=Python+Pascal+Saint-Maurice" target="_blank" class="btn-outline">Voir tous les avis sur Google</a>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <div class="bg-alt">
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <a href="tel:0793426909"><strong>Tél :</strong> 079 342 69 09</a>
+                    <a href="mailto:ppython@netplus.ch"><strong>Email :</strong> ppython@netplus.ch</a>
+                    <address class="address">
+                        <strong>Adresse :</strong><br>
+                        Rue des Dents-de-Morcles 8<br>
+                        1890 Saint-Maurice<br>
+                        Valais, Suisse
+                    </address>
+                </div>
+                <div class="map-container">
+                    <!-- Google Maps Iframe -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2757.240562547101!2d7.00115317684447!3d46.215611182991054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478eb0408f62f3a3%3A0xe10f9e1e2d73390c!2sRue%20des%20Dents-de-Morcles%208%2C%201890%20Saint-Maurice!5e0!3m2!1sfr!2sch!4v1715600000000!5m2!1sfr!2sch" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Python Pascal — Tous droits réservés.</p>
+        <p>Réalisé à Saint-Maurice</p>
+    </footer>
+
+    <!-- Lightbox Element -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Fermer la lightbox avec la touche Échap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
